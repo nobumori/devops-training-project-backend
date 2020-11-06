@@ -25,12 +25,12 @@ pipeline {
                 DB_NAME="${DB_NAME}"
             }
             steps {
-                sh "./gradlew test"
+                sh "gradle test"
             }
         }        
         stage('Build') {
             steps {
-                sh "./gradlew build -x test"
+                sh "gradle build -x test"
             }
         }
         stage('Sonarqube'){
@@ -39,7 +39,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                     sh "./gradlew -x test sonarqube -Dsonar.projectKey=backend_dev"
+                     sh "gradle -x test sonarqube -Dsonar.projectKey=backend_dev"
                 }
             }
         }

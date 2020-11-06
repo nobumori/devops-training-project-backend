@@ -28,12 +28,12 @@ pipeline {
                 DB_NAME="${DB_NAME}"
             }
             steps {
-                sh "gradle test -DGRADLE_OPTS=-Xmx512m"
+                sh "gradle test --no-daemon -DGRADLE_OPTS=-Xmx512m"
             }
         }        
         stage('Build') {
             steps {
-                sh "gradle build -x test"
+                sh "gradle build --no-daemon -x test"
             }
         }
         stage('Sonarqube'){
@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "gradle -x test sonarqube -Dsonar.projectKey=backend_dev"
+                    sh "gradle --no-daemon -x test sonarqube -Dsonar.projectKey=backend_dev"
                 }
             }
         }

@@ -28,7 +28,7 @@ pipeline {
                 DB_NAME="${DB_NAME}"
             }
             steps {
-                sh "gradle test"
+                sh "gradle test -DGRADLE_OPTS=-Xmx512m"
             }
         }        
         stage('Build') {

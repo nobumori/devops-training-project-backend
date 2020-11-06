@@ -2,6 +2,9 @@
 
 pipeline {
     agent any
+    tools {
+        gradle "gradle"
+    }
     parameters {
         string(name: 'commit_id', defaultValue: 'develop', description: 'branch/tag/commit value to deploy')
     }
@@ -39,7 +42,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                     sh "gradle -x test sonarqube -Dsonar.projectKey=backend_dev"
+                    sh "gradle -x test sonarqube -Dsonar.projectKey=backend_dev"
                 }
             }
         }

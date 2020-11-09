@@ -5,10 +5,6 @@ pipeline {
     tools {
         gradle "gradle"
     }
-    parameters {
-        string(name: 'commit_id', defaultValue: 'develop', description: 'branch/tag/commit value to deploy')
-    }
-
     options {
         skipDefaultCheckout()
         disableConcurrentBuilds()
@@ -37,6 +33,9 @@ pipeline {
             }
         }
         stage('Sonarqube'){
+            when {
+                branch 'develop'
+            }
             environment {
                 scannerHome = tool 'sonarqube_scaner'
             }
@@ -47,6 +46,9 @@ pipeline {
             }
         }
         stage("Quality Gate") {
+            when {
+                branch 'develop'
+            }
             steps {
                 sleep(5)
                 timeout(time: 5, unit: 'MINUTES') {

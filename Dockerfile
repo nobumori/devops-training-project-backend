@@ -6,8 +6,9 @@ USER root
 RUN apk --verbose --update-cache --upgrade add \
     git \
     && rm -rf /var/cache/apk/* \
-    && rm -rf /tmp/* \
-    && gradle --quiet --no-daemon --no-build-cache build -x test 
+    && rm -rf /tmp/* 
+COPY --chown=0:0 . .   
+RUN gradle --quiet --no-daemon --no-build-cache build -x test 
  
 FROM openjdk:8-jre-alpine AS production
 ENV BUILD_PATH=/opt/devops-training-project-backend/build

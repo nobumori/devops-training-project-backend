@@ -35,7 +35,7 @@ It uses a H2 in memory database (for now), can be changed easily in the `applica
 
 You need Java 8 installed.
 
-    ./gradlew bootRun
+    ./gradle bootRun
 
 To test that it works, open a browser tab at http://localhost:8080/tags .  
 Alternatively, you can run
@@ -50,13 +50,13 @@ The entry point address of the backend API is at http://localhost:8080, **not** 
 
 The repository contains a lot of test cases to cover both api test and repository test.
 
-    ./gradlew test
+    ./gradle test
 
 #Additional configuration
 
 To start project with 
 
-    ./gradlew bootRun
+    ./gradle bootRun
 or
     
     ./gradle build && java -jar ./build/lib/*.jar 

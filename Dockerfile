@@ -11,7 +11,7 @@ COPY --chown=0:0 . .
 RUN gradle --quiet --no-daemon --no-build-cache build -x test 
  
 FROM openjdk:8-jre-alpine AS production
-ENV BUILD_PATH=/opt/devops-training-project-backend/build
+ENV BUILD_PATH=/opt/build
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 WORKDIR /opt/backend

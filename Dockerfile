@@ -1,5 +1,4 @@
 FROM gradle:4.8.0-jdk8-alpine AS test
-LABEL backend_app="0.0.1"
 
 WORKDIR /opt
 USER root
@@ -11,7 +10,6 @@ COPY --chown=0:0 . .
 RUN gradle --quiet --no-daemon --no-build-cache build test 
 
 FROM gradle:4.8.0-jdk8-alpine AS build
-LABEL backend_app="0.0.1"
 
 WORKDIR /opt
 USER root
@@ -23,6 +21,7 @@ COPY --chown=0:0 . .
 RUN gradle --quiet --no-daemon --no-build-cache build -x test 
  
 FROM openjdk:8-jre-alpine AS production
+LABEL backend_app="0.0.1"
 ENV BUILD_PATH=/opt/build
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser

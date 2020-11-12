@@ -1,5 +1,9 @@
 FROM gradle:4.8.0-jdk8-alpine AS test
-
+ARG DB_NAME=DUMMY_DB_NAME \
+    DB_PASSWORD=DUMMY_DB_PASSWORD \
+    DB_PORT=DUMMY_DB_PORT\
+    DB_URL=DUMMY_DB_URL \
+    DB_USERNAME=DUMMY_DB_USERNAME
 WORKDIR /opt
 USER root
 RUN apk --verbose --update-cache --upgrade add \
@@ -10,7 +14,6 @@ COPY --chown=0:0 . .
 RUN gradle --quiet --no-daemon --no-build-cache build test 
 
 FROM gradle:4.8.0-jdk8-alpine AS build
-
 WORKDIR /opt
 USER root
 RUN apk --verbose --update-cache --upgrade add \

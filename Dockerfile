@@ -37,4 +37,4 @@ EXPOSE 8080
 CMD ["java", \
      "-Dspring.config.location=./", \
      "-jar", \
-     "devops-training-project-backend.jar"    ]
+     "opt.jar"    ]

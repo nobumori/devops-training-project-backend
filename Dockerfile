@@ -1,4 +1,4 @@
-FROM gradle:4.7.0-jdk8-alpine AS test
+FROM gradle:4.8.1-jdk8-alpine AS test
 ARG DB_NAME
 ARG DB_PASSWORD
 ARG DB_PORT
@@ -13,7 +13,7 @@ RUN apk --verbose --update-cache --upgrade add \
 COPY --chown=0:0 . .   
 RUN gradle --quiet --no-daemon --no-build-cache build test 
 
-FROM gradle:4.7.0-jdk8-alpine AS build
+FROM gradle:4.8.1-jdk8-alpine AS build
 WORKDIR /opt
 USER root
 RUN apk --verbose --update-cache --upgrade add \

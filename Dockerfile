@@ -1,9 +1,4 @@
 FROM gradle:4.8.0-jdk8-alpine AS test
-ARG DB_NAME
-ARG DB_PASSWORD
-ARG DB_PORT
-ARG DB_URL
-ARG DB_USERNAME
 WORKDIR /opt
 USER root
 RUN apk --verbose --update-cache --upgrade add \

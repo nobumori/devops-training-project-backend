@@ -14,19 +14,7 @@ pipeline {
             steps {
                 git 'https://github.com/nobumori/devops-training-project-backend.git'
             }
-        }
-        stage('Test') {
-            environment{
-                DB_USERNAME="${DB_USERNAME}"
-                DB_PASSWORD="${DB_PASSWORD}"
-                DB_URL="${DB_URL}"
-                DB_PORT="${DB_PORT}"
-                DB_NAME="${DB_NAME}"
-            }
-            steps {
-                sh "gradle test --no-daemon -DGRADLE_OPTS=-Xmx512m"
-            }
-        }        
+        }   
         stage('Build') {
             steps {
                 sh "gradle build --no-daemon -x test"

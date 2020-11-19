@@ -10,10 +10,8 @@ RUN gradle --quiet --no-daemon --no-build-cache build -x test
  
 FROM openjdk:8-jre-alpine AS production
 LABEL backend_app="0.0.1"
-ENV BUILD_PATH=/opt/build \
-    APP_USER=appuser \
-    APP_GROUP=appgroup 
-RUN addgroup -S ${APP_GROUP} && adduser -S ${APP_USER} -G {APP_GROUP}
+ENV BUILD_PATH=/opt/build
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 WORKDIR /opt/backend
 COPY --chown=0:0 --from=build ${BUILD_PATH}/libs/* ${WORKDIR}

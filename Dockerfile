@@ -1,4 +1,4 @@
-FROM gradle:4.8.1-jdk8-alpine AS build
+FROM gradle:4.7.0-jdk8-alpine AS build
 WORKDIR /opt
 USER root
 RUN apk --verbose --update-cache --upgrade add \

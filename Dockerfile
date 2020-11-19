@@ -10,7 +10,12 @@ RUN gradle --quiet --no-daemon --no-build-cache build -x test
  
 FROM openjdk:8-jre-alpine AS production
 LABEL backend_app="0.0.1"
-ENV BUILD_PATH=/opt/build
+ENV BUILD_PATH=/opt/build\
+    DB_USERNAME=root \
+    DB_PASSWORD=pa$$w0rd \
+    DB_NAME=realworld \
+    DB_URL=localhost \
+    DB_PORT=3306 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 WORKDIR /opt/backend

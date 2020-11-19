@@ -12,12 +12,7 @@ FROM openjdk:8-jre-alpine AS production
 LABEL backend_app="0.0.1"
 ENV BUILD_PATH=/opt/build \
     APP_USER=appuser \
-    APP_GROUP=appgroup \
-    DB_USERNAME=root \
-    DB_PASSWORD=pa$$w0rd \
-    DB_NAME=realworld \
-    DB_URL=localhost \
-    DB_PORT=3306 
+    APP_GROUP=appgroup 
 RUN addgroup -S ${APP_GROUP} && adduser -S ${APP_USER} -G {APP_GROUP}
 USER appuser
 WORKDIR /opt/backend

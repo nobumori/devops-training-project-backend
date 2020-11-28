@@ -54,7 +54,10 @@ pipeline {
                 BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d-%m-%Y-%H-%M-%S'").trim()
             }
             steps {
-                sh "zip -r backend-${BUILD_ID}.zip build/resources/main/application.properties build/libs/backend.jar"
+                sh "mkdir artifact"
+                sh "mv build/resources/main/application.properties artifact"
+                sh "mv build/libs/backend.jar artifact"
+                sh "zip -r backend-${BUILD_ID}.zip artifact"
                 script {
                     dir('.') {
                     def artifact_name = "backend-${BUILD_ID}"

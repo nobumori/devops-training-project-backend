@@ -2,6 +2,9 @@
 
 pipeline {
     agent any
+    environment {
+        BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d_%m_%Y_%H_%M_%S'").trim()
+    }
     tools {
         gradle "gradle"
     }
@@ -50,9 +53,6 @@ pipeline {
             }
         }
         stage('Push to Nexus') {
-            environment {
-                BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d_%m_%Y_%H_%M_%S'").trim()
-            }
             steps {
                 sh "mkdir artifact"
                 sh "mv build/resources/main/application.properties artifact"
@@ -68,14 +68,14 @@ pipeline {
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: '${NEXUS_BACK}',
-                        version: "{$BUILD_DATE}"
+                        version: "$BUILD_DATE"
                     }
                 }    
             }
         }
         stage ('Deploy ansible'){
             environment {
-                ARTIFACT_URL = 'https://${NEXUS_URL}/repository/${NEXUS_BACK}/devops-training/build/{$BUILD_DATE}/build-{$BUILD_DATE}.zip'
+                ARTIFACT_URL = 'https://${NEXUS_URL}/repository/${NEXUS_BACK}/devops-training/build/$BUILD_DATE/build-$BUILD_DATE.zip'
             }
             steps {
                sh "echo ${ARTIFACT_URL}"

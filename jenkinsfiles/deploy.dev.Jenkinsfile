@@ -65,7 +65,7 @@ pipeline {
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: '${NEXUS_BACK}',
-                        version: "${BUILD_DATE}"
+                        version: 'latest'
                     }
                 }    
             }

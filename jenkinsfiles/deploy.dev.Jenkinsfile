@@ -51,13 +51,13 @@ pipeline {
         }
         stage('Push to Nexus') {
             environment {
-                BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d_%m_%Y_%H_%M_%S'").trim()
+                BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d-%m-%Y-%H-%M-%S'").trim()
             }
             steps {
-                sh "zip -r backend_${BUILD_ID}.zip build/libs/resources/main/application.properties build/libs/backend.jar"
+                sh "zip -r backend-${BUILD_ID}.zip build/resources/main/application.properties build/libs/backend.jar"
                 script {
                     dir('.') {
-                    def artifact_name = "backend_${BUILD_ID}"
+                    def artifact_name = "backend-${BUILD_ID}"
                     nexusArtifactUploader artifacts: [[artifactId: 'build', file: "${artifact_name}.zip", type: 'zip']],
                         credentialsId: 'jenkins',
                         groupId: 'devops-training',
@@ -72,9 +72,9 @@ pipeline {
         }
     }
     post {
-//        always {
-//            cleanWs()
-//        }
+        always {
+            cleanWs()
+        }
         success{
             echo " ---=== SUCCESS ===---"
         }

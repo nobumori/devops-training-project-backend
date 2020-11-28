@@ -65,13 +65,16 @@ pipeline {
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: '${NEXUS_BACK}',
-                        version: 'latest'
+                        version: '${BUILD_DATE}'
                     }
                 }    
             }
         }
     }
     post {
+        always {
+            cleanWs()
+        }
         success{
             echo " ---=== SUCCESS ===---"
         }

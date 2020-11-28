@@ -54,18 +54,19 @@ pipeline {
                 BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d_%m_%Y_%H_%M_%S'").trim()
             }
             steps {
-                sh "mv build/libs/*.jar backend-${BUILD_ID}.jar"
+                sh "mv build/libs/*.jar backend.jar"
+                sh "zip -r backend-${BUILD_ID}.zip build/libs/resources/main/application.properties build/libs/backend.jar"
                 script {
                     dir('.') {
                     def artifact_name = "backend-${BUILD_ID}"
-                    nexusArtifactUploader artifacts: [[artifactId: 'build', file: "${artifact_name}.jar", type: 'jar']],
+                    nexusArtifactUploader artifacts: [[artifactId: 'build', file: "${artifact_name}.zip", type: 'zip']],
                         credentialsId: 'jenkins',
                         groupId: 'devops-training',
                         nexusUrl: '${NEXUS_URL}',
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: '${NEXUS_BACK}',
-                        version: "${BUILD_DATE}"
+                        version: 'latest'
                     }
                 }    
             }

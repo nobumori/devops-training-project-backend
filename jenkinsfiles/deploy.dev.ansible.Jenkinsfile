@@ -3,7 +3,7 @@
 pipeline {
     agent any
     environment {
-        BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d_%m_%Y_%H_%M_%S'").trim()
+        BUILD_DATE = sh(returnStdout: true, script: "date -u +'%d-%m-%Y-%H-%M-%S'").trim()
     }
     tools {
         gradle "gradle"

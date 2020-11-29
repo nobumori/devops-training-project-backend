@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                sh "https://github.com/nobumori/devops-training-project-backend.git"
+                git 'https://github.com/nobumori/devops-training-project-backend.git'
             }
         }   
         stage('Build') {

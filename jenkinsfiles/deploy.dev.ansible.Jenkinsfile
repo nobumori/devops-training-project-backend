@@ -78,8 +78,7 @@ pipeline {
                 ARTIFACT_URL = 'https://${NEXUS_URL}/repository/backend/devops-training/build/$BUILD_DATE/build-$BUILD_DATE.zip'
             }
             steps {
-               sh "echo ${ARTIFACT_URL}"
-               
+               sh "ansible-playbook /home/ec2-user/app_back.yml --extra-vars nexus_front_url=$ARTIFACT_URL"
             }
         }       
         

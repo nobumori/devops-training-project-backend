@@ -75,10 +75,11 @@ pipeline {
         }
         stage ('Deploy ansible'){
             environment {
-                ARTIFACT_URL = 'https://${NEXUS_URL}/repository/backerd/devops-training/build/$BUILD_DATE/build-$BUILD_DATE.zip'
+                ARTIFACT_URL = 'https://${NEXUS_URL}/repository/backend/devops-training/build/$BUILD_DATE/build-$BUILD_DATE.zip'
             }
             steps {
                sh "echo ${ARTIFACT_URL}"
+               
             }
         }       
         

@@ -1,0 +1,9 @@
+  
+---
+
+- name: "Backend installation"
+  hosts: app
+
+  roles:
+   - diodonfrost.java
+   - app_back

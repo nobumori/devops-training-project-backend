@@ -5,8 +5,7 @@
 
     <!--- Console log --->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-  GNU nano 2.9.8                                        logback.xml                                        Modified  
-
+        <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>

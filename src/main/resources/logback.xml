@@ -51,8 +51,9 @@
 
 <!---LOGSTASH -->
   <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-    <destination>172.16.2.252:4561</destination>
-      <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    <remoteHost>172.16.2.252</remoteHost>
+    <port>4561</port>
+      <encoder class="net.logstash.logback.encoder.LogstashEncoder">
         <customFields>{"app":"backend"}</customFields>
       </encoder>
   </appender>

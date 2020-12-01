@@ -4,5 +4,5 @@
   hosts: app
 
   roles:
-   - diodonfrost.java
+   # - diodonfrost.java
    - app_back

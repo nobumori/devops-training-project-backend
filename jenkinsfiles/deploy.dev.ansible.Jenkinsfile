@@ -57,6 +57,7 @@ pipeline {
                 sh "mkdir artifact"
                 sh "mv build/resources/main/application.properties artifact"
                 sh "mv build/libs/backend.jar artifact"
+                sh "mv src/main/resources/logback.xml artifact"
                 sh "zip -r backend_${BUILD_ID}.zip artifact"
                 script {
                     dir('.') {
